@@ -22,7 +22,7 @@ onMounted(fetchPokemon)
 </script>
 
 <template>
-  <main class="pokemon">
+  <main class="container">
     <h1>Pokemon Index Page</h1>
     <ul>
       <li v-for="p in pokemon" :key="pokemon._id">

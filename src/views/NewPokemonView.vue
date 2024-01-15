@@ -97,8 +97,9 @@ function clearForm() {
         <span v-for="type, index in pokemonTypes" :key="index">
           <input 
           type="checkbox" 
-          id="type" 
+          :id="type" 
           v-model="pokemon.type" 
+          :value="type"
           name="type" 
           placeholder="Pokemon type" 
         
