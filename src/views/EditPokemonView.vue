@@ -1,8 +1,12 @@
 <script setup>
-import router from '@/router';
-import { ref } from 'vue';
+import { ref, onMounted } from 'vue';
+import { useRoute, useRouter } from 'vue-router';
 const API_URL = import.meta.env.VITE_API_URL
 
+const router = useRouter()
+const route = useRoute()
+
+const id = route.params.id
 
 const pokemon = ref({
   number: '',
@@ -20,11 +24,31 @@ const pokemonTypes = [
   'dragon', 'steel', 'fairy',
 ]
 
+const loadPokemonData = async () => {
+  try {
+    const response = await fetch(`${API_URL}/pokemon/${id}`)
+    const result = await response.json()
+    pokemon.value = {
+      number: result.number,
+      name: result.name,
+      habitat: result.habitat,
+      type: result.type,
+      pokedexEntry: result.pokedexEntry,
+      sprite: result.sprite,
+      image: result.image,
+    }
+  } catch (err) {
+    console.log(err)
+  }
+}
+
+onMounted(loadPokemonData)
+
 async function handleSubmit(e) {
   e.preventDefault()
   try {
-    const response = await fetch(`${API_URL}/pokemon/add`, {
-      method: "POST",
+    const response = await fetch(`${API_URL}/pokemon/${id}`, {
+      method: "PUT",
       headers: {
         "Content-Type": "application/json"
       },
@@ -33,7 +57,7 @@ async function handleSubmit(e) {
 
     if (response.ok) {
       console.log('Success')
-      router.push(`/pokemon`)
+      router.push(`/pokemon/${id}`)
     } else {
       console.error(`Error: ${response.status}`)
     }
@@ -42,22 +66,11 @@ async function handleSubmit(e) {
   }
 }
 
-function clearForm() {
-  pokemon.value = {
-    number: '',
-    name: '',
-    habitat: '',
-    type: [],
-    pokedexEntry: '',
-    sprite: '',
-    image: ''
-  }
-}
 </script>
 
 <template>
   <section>
-  <h3>Add New Pokemon</h3>
+  <h3>Edit Pokemon</h3>
   <div class="pokemon-form">
     <form  @submit="handleSubmit">
       <div>
@@ -140,7 +153,7 @@ function clearForm() {
         required
       />
     </div>
-      <button type="submit">Add Pokemon</button>
+      <button type="submit">Edit Pokemon</button>
     </form>
   </div>
 </section>

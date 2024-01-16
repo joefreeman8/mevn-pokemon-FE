@@ -23,18 +23,32 @@ onMounted(fetchPokemon)
 
 <template>
   <main class="container">
-    <h1>Pokemon Index Page</h1>
-    <ul>
-      <li v-for="p in pokemon" :key="pokemon._id">
-        <RouterLink :to="`/pokemon/${p._id}`"># {{ p.number }} - {{ p.name }}</RouterLink>
-      </li>
-    </ul>
+    <h1 class="mt-5 text-center">Pokemon Index Page</h1>
+    <div class="row mt-5">
+      <div v-for="p in pokemon" :key="p._id" class="col-md-4 mb-4">
+        <RouterLink class="text-decoration" :to="`/pokemon/${p._id}`">
+        <div class="card bg-warning h-100 d-flex align-items-center">
+          <div class="card-body">
+            <p class="hello">{{ p.number }} - {{ p.name }}</p>
+            <img :src="p.sprite" :alt="p.name" />
+          </div>
+          </div>
+        </RouterLink>
+      </div>
+    </div>
   </main>
 </template>
 
 
+<style scoped>
+h1 {
+  color: white;
+}
 
-<style>
+.text-decoration {
+  text-decoration: none;
+}
+
 @media (min-width: 1024px) {
   .about {
     min-height: 100vh;
