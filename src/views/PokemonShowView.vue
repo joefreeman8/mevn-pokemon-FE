@@ -1,34 +1,21 @@
 <script setup>
 import { ref, onMounted, inject } from 'vue'
 import { RouterLink, useRoute, useRouter } from 'vue-router'
-// import { useCookies } from 'vue3-cookies'
-// import { decodeCredential } from 'vue3-google-login'
-const isLoggedIn = inject('isLoggedIn');
-// const username = inject('username');
-const userSub = inject('userSub');
+
+const isLoggedIn = inject('isLoggedIn')
+const userSub = inject('userSub')
 const checkSession = inject('checkSession')
-// const { cookies } = useCookies()
+
 const route = useRoute()
 const router = useRouter()
 const pokemon = ref({})
 const API_URL = import.meta.env.VITE_API_URL
 const id = route.params.id
-// const isLoggedIn = ref(false)
-// const userSub = ref()
+
 
 function isOwner(pokemonUniqueSub) {
   return userSub.value === pokemonUniqueSub
 }
-
-// const checkSession = () => {
-//   if (cookies.isKey('user_session')) {
-//     isLoggedIn.value = true
-//     const userData = decodeCredential(cookies.get('user_session'))
-//     userSub.value = userData.sub
-//   }
-// }
-
-
 
 const fetchSinglePokemon = async () => {
   try {
