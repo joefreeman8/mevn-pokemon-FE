@@ -1,10 +1,13 @@
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, inject } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 const API_URL = import.meta.env.VITE_API_URL
 
 const router = useRouter()
 const route = useRoute()
+
+const userEmail = inject('userEmail');
+const checkSession = inject('checkSession');
 
 const id = route.params.id
 
@@ -42,7 +45,10 @@ const loadPokemonData = async () => {
   }
 }
 
-onMounted(loadPokemonData)
+onMounted(() => {
+  checkSession()
+  loadPokemonData()
+})
 
 async function handleSubmit(e) {
   e.preventDefault()
@@ -50,7 +56,8 @@ async function handleSubmit(e) {
     const response = await fetch(`${API_URL}/pokemon/${id}`, {
       method: "PUT",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "User-Email": userEmail.value,
       },
       body: JSON.stringify({ ...pokemon.value })
     })

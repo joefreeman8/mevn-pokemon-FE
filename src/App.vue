@@ -1,14 +1,53 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
+import { provide } from 'vue'
+import { isLoggedIn, username, userEmail, userSub, checkSession } from '@/components/globalProvide.js'
+// import { ref } from 'vue'
+import { useCookies } from 'vue3-cookies'
+import { googleLogout } from 'vue3-google-login'
+const { cookies } = useCookies()
+// const username = ref()
+// const userSub = ref()
+
+// const isLoggedIn = ref(false)
+
+// const checkSession = () => {
+//   if (cookies.isKey('user_session')) {
+//     isLoggedIn.value = true
+//     const userData = decodeCredential(cookies.get('user_session'))
+//     username.value = userData.given_name
+//     userSub.value = userData.sub
+//     console.log('Sub: ', userSub.value)
+//   }
+// }
+// checkSession()
+provide('isLoggedIn', isLoggedIn);
+provide('username', username);
+provide('userSub', userSub);
+provide('userEmail', userEmail);
+provide('checkSession', checkSession);
+
+const handleLogout = () => {
+  googleLogout()
+  cookies.remove('user_session')
+  isLoggedIn.value = false
+}
+
 </script>
 
 <template>
   <header>
     <div class="nav">
-      <nav>
+      <nav class="d-flex justify-content-between">
+        <div class="p-1 ms-1">
         <RouterLink to="/">Home</RouterLink>
         <RouterLink to="/pokemon">View Pokemon</RouterLink>
-        <RouterLink to="/pokemon/add">Add New Pokemon</RouterLink>
+      </div>
+        <div v-if="isLoggedIn" class="me-4">
+          <RouterLink to="/pokemon/add">Add New Pokemon</RouterLink>
+          <button @click="handleLogout" class="btn btn-sm btn-warning p-1">Log Out</button>
+        </div>
+        <RouterLink v-if="!isLoggedIn" to="/login">Login</RouterLink>
       </nav>
     </div>
   </header>

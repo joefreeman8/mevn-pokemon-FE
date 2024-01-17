@@ -1,8 +1,11 @@
 <script setup>
 import router from '@/router';
-import { ref } from 'vue';
+import { ref, onMounted, inject } from 'vue';
+
 const API_URL = import.meta.env.VITE_API_URL
 
+const userEmail = inject('userEmail');
+const checkSession = inject('checkSession');
 
 const pokemon = ref({
   number: '',
@@ -11,7 +14,7 @@ const pokemon = ref({
   type: [],
   pokedexEntry: '',
   sprite: '',
-  image: ''
+  image: '',
 })
 
 const pokemonTypes = [
@@ -20,13 +23,19 @@ const pokemonTypes = [
   'dragon', 'steel', 'fairy',
 ]
 
+
+onMounted(() => {
+  checkSession()
+})
+
 async function handleSubmit(e) {
   e.preventDefault()
   try {
     const response = await fetch(`${API_URL}/pokemon/add`, {
       method: "POST",
       headers: {
-        "Content-Type": "application/json"
+        "Content-Type": "application/json",
+        "User-Email": userEmail.value,
       },
       body: JSON.stringify({ ...pokemon.value })
     })
@@ -39,18 +48,6 @@ async function handleSubmit(e) {
     }
   } catch (err) {
     console.log(err.message)
-  }
-}
-
-function clearForm() {
-  pokemon.value = {
-    number: '',
-    name: '',
-    habitat: '',
-    type: [],
-    pokedexEntry: '',
-    sprite: '',
-    image: ''
   }
 }
 </script>
