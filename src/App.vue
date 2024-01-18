@@ -2,25 +2,11 @@
 import { RouterLink, RouterView } from 'vue-router'
 import { provide } from 'vue'
 import { isLoggedIn, username, userEmail, userSub, checkSession } from '@/components/globalProvide.js'
-// import { ref } from 'vue'
+
 import { useCookies } from 'vue3-cookies'
 import { googleLogout } from 'vue3-google-login'
 const { cookies } = useCookies()
-// const username = ref()
-// const userSub = ref()
 
-// const isLoggedIn = ref(false)
-
-// const checkSession = () => {
-//   if (cookies.isKey('user_session')) {
-//     isLoggedIn.value = true
-//     const userData = decodeCredential(cookies.get('user_session'))
-//     username.value = userData.given_name
-//     userSub.value = userData.sub
-//     console.log('Sub: ', userSub.value)
-//   }
-// }
-// checkSession()
 provide('isLoggedIn', isLoggedIn);
 provide('username', username);
 provide('userSub', userSub);
