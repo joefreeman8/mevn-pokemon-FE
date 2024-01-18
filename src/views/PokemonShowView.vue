@@ -5,6 +5,7 @@ import { RouterLink, useRoute, useRouter } from 'vue-router'
 const isLoggedIn = inject('isLoggedIn')
 const userSub = inject('userSub')
 const checkSession = inject('checkSession')
+const userEmail = inject('userEmail')
 
 const route = useRoute()
 const router = useRouter()
@@ -31,7 +32,10 @@ const fetchSinglePokemon = async () => {
 const deletePokemon = async () => {
   try {
     const res = await fetch(`${API_URL}/pokemon/${id}`, {
-      method: "DELETE"
+      method: "DELETE",
+      headers: {
+        "User-Email": userEmail.value
+      }
     })
 
     if (res.ok) {
