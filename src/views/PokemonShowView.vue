@@ -37,12 +37,10 @@ const deletePokemon = async () => {
         "User-Email": userEmail.value
       }
     })
-
     if (res.ok) {
       console.log('Pokemon Deleted')
       router.replace({ name: 'pokemon' })
     }
-
   } catch (err) {
     console.log(err)
   }
