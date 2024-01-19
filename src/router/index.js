@@ -4,7 +4,7 @@ import PokemonIndexView from '@/views/PokemonIndexView.vue'
 import PokemonShowView from '@/views/PokemonShowView.vue'
 import NewPokemonView from '@/views/NewPokemonView.vue'
 import EditPokemonView from '@/views/EditPokemonView.vue'
-import LoginView from '@/views/LoginView.vue'
+// import LoginView from '@/views/LoginView.vue'
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -33,11 +33,6 @@ const router = createRouter({
       path: '/pokemon/add',
       name: 'newPokemon',
       component: NewPokemonView
-    },
-    {
-      path: '/login',
-      name: 'login',
-      component: LoginView
     },
   ]
 })

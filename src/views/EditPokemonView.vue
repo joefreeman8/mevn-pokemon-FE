@@ -75,13 +75,14 @@ async function handleSubmit(e) {
 </script>
 
 <template>
-  <section>
-  <h3>Edit Pokemon</h3>
-  <div class="pokemon-form">
+  <section class="container d-flex justify-content-center align-items-center flex-column w-100">
+  <h1 class="text-center mt-5 mb-2">Edit Pokemon</h1>
+  <div class="mt-2 d-flex justify-content-center align-items-center w-50">
     <form  @submit="handleSubmit">
       <div>
-        <label for="number">Number: </label>
+        <label for="number" class="form-label text-warning">Number: </label>
         <input 
+        class="form-control"
           type="number" 
           id="number" 
           v-model="pokemon.number" 
@@ -91,8 +92,9 @@ async function handleSubmit(e) {
         />
       </div>
       <div>
-      <label for="name">Name: </label>
+      <label for="name" class="form-label text-warning">Name: </label>
       <input 
+      class="form-control"
         type="text" 
         id="name" 
         v-model="pokemon.name" 
@@ -102,8 +104,9 @@ async function handleSubmit(e) {
       />
       </div>
       <div>
-      <label for="habitat">Habitat: </label>
+      <label for="habitat" class="form-label text-warning">Habitat: </label>
       <input 
+      class="form-control"
         type="text" 
         id="habitat" 
         v-model="pokemon.habitat" 
@@ -113,23 +116,25 @@ async function handleSubmit(e) {
       />
       </div>
       <div>
-        <label for="type">Type: </label>
-        <span v-for="type, index in pokemonTypes" :key="index">
+        <label for="type" class="text-warning">Type: </label><br />
+        <div v-for="type, index in pokemonTypes" :key="index" class="btn-group m-1" role="group" aria-label="Basic checkbox toggle button group" >
           <input 
+          autocomplete="off"
           type="checkbox" 
+          class="btn-check"
           :id="type" 
           v-model="pokemon.type" 
           :value="type"
           name="type" 
           placeholder="Pokemon type" 
-        
           />
-          <span>&nbsp;{{ type }} &nbsp;</span>
-        </span>
+          <label class="btn btn-outline-warning" :for="type">&nbsp;{{ type }} &nbsp;&nbsp;</label>
+        </div>
       </div>
       <div>
-      <label for="pokedexEntry">Pokedex: </label>
+      <label for="pokedexEntry" class="form-label text-warning">Pokedex: </label>
       <textarea 
+      class="form-control"
         id="pokedexEntry"
         v-model="pokemon.pokedexEntry" 
         placeholder="Pokedex Entry"
@@ -138,8 +143,9 @@ async function handleSubmit(e) {
       </textarea>
     </div>
     <div>
-      <label for="sprite">Sprite: </label>
+      <label for="sprite" class="form-label text-warning">Sprite: </label>
       <input 
+      class="form-control"
         type="text" 
         id="sprite" 
         v-model="pokemon.sprite" 
@@ -149,8 +155,9 @@ async function handleSubmit(e) {
       />
     </div>
     <div>
-      <label for="image">Image: </label>
+      <label for="image" class="form-label text-warning">Image: </label>
       <input 
+        class="form-control"
         type="text" 
         id="image" 
         v-model="pokemon.image" 
@@ -159,8 +166,20 @@ async function handleSubmit(e) {
         required
       />
     </div>
-      <button type="submit">Edit Pokemon</button>
+    <div class="d-flex justify-content-center m-0">
+      <button class="btn btn-warning m-5 btn-lg" type="submit">Edit Pokemon</button>
+    </div>
     </form>
   </div>
 </section>
 </template>
+
+<style scoped>
+h1 {
+  color: white;
+}
+
+span {
+  color: white;
+}
+</style>

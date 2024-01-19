@@ -33,7 +33,7 @@ const handleLogout = () => {
           <RouterLink to="/pokemon/add">Add New Pokemon</RouterLink>
           <button @click="handleLogout" class="btn btn-sm btn-warning p-1">Log Out</button>
         </div>
-        <RouterLink v-if="!isLoggedIn" to="/login">Login</RouterLink>
+        <RouterLink v-if="!isLoggedIn" to="/">Login</RouterLink>
       </nav>
     </div>
   </header>

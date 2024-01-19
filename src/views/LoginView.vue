@@ -1,4 +1,4 @@
-<script setup>
+<!-- <script setup>
 import { useCookies } from 'vue3-cookies'
 import { decodeCredential, googleLogout } from 'vue3-google-login'
 import { onMounted, inject } from 'vue'
@@ -62,4 +62,4 @@ h2,
 div {
   color: white;
 }
-</style>
+</style> -->
