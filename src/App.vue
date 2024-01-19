@@ -1,7 +1,7 @@
 <script setup>
 import { RouterLink, RouterView } from 'vue-router'
 import { provide } from 'vue'
-import { isLoggedIn, username, userEmail, userSub, checkSession } from '@/components/globalProvide.js'
+import { isLoggedIn, username, userEmail, userSub, checkSession } from '@/stores/globalProvide.js'
 
 import { useCookies } from 'vue3-cookies'
 import { googleLogout } from 'vue3-google-login'

@@ -23,7 +23,6 @@ const fetchSinglePokemon = async () => {
     const res = await fetch(`${API_URL}/pokemon/${id}`)
     const result = await res.json()
     pokemon.value = result
-    console.log(result)
   } catch (err) {
     console.error('Error fetching single Pokemon: ', err.message)
   }
@@ -38,7 +37,6 @@ const deletePokemon = async () => {
       }
     })
     if (res.ok) {
-      console.log('Pokemon Deleted')
       router.replace({ name: 'pokemon' })
     }
   } catch (err) {

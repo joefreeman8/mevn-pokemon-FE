@@ -14,11 +14,10 @@ const callback = async (response) => {
   try {
     isLoggedIn.value = true
     const userData = decodeCredential(response.credential)
-    console.log(userData)
     username.value = userData.given_name
     cookies.set('user_session', response.credential)
 
-    const res = await fetch(`${API_URL}/users/login`, {
+    await fetch(`${API_URL}/users/login`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json"
@@ -28,9 +27,6 @@ const callback = async (response) => {
         uniqueSub: userData.sub
       })
     })
-    if (res.ok) {
-      console.log(`${username.value}, has successfully logged in`)
-    }
   } catch (err) {
     console.error(err)
     console.error(err.message)

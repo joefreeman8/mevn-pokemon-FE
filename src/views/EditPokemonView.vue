@@ -63,7 +63,6 @@ async function handleSubmit(e) {
     })
 
     if (response.ok) {
-      console.log('Success')
       router.push(`/pokemon/${id}`)
     } else {
       console.error(`Error: ${response.status}`)

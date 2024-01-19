@@ -11,7 +11,6 @@ const fetchPokemon = async () => {
     const response = await fetch(`${API_URL}/pokemon`)
     const result = await response.json()
     pokemon.value = result
-    console.log(result)
   } catch (err) {
     console.log('Fetch failed: ', err.message)
   }
