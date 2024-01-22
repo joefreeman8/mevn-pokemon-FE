@@ -95,7 +95,7 @@ onMounted(() => {
 
 <style scoped>
 main {
-  height: 95dvh;
+  height: 100dvh;
 }
 
 .pokemon-card {
