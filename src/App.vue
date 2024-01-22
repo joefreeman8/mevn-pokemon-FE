@@ -53,10 +53,6 @@ header {
   max-height: 100vh;
 }
 
-.logo {
-  display: block;
-  margin: 0 auto 2rem;
-}
 
 nav {
   width: 100%;
@@ -76,6 +72,8 @@ nav a.router-link-exact-active:hover {
 }
 
 nav a {
+  font-size: 16px;
+  letter-spacing: 0.02em;
   display: inline-block;
   padding: 0 1rem;
   text-decoration: none;

@@ -99,7 +99,8 @@ main {
 }
 
 .pokemon-card {
-  width: 60dvw;
+  width: 30dvw;
+  height: 75dvh;
   padding: 4rem;
 }
 
