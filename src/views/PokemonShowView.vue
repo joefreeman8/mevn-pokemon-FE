@@ -53,7 +53,7 @@ onMounted(() => {
 
 <template>
   <main class="container mt-5 d-flex flex-column align-items-center">
-    <div class="mt-5 card h-75 border p-5 shadow-lg pokemon-card card-shine-effect-metal" style="--bs-border-color: #ffd508; background-color: #bf4af3; --bs-border-width: 1em;" >
+    <div class="mt-5 card border shadow-lg pokemon-card card-shine-effect-metal" style="--bs-border-color: #ffd508; background-color: #bf4af3; --bs-border-width: 1em;" >
       <div class="pokemon-title-and-image border d-flex flex-column justify-content-center align-items-center rounded p-1 shadow" style="--bs-border-color: #ffd508; --bs-border-width: 0.5em;">
         <h2>#{{ pokemon.number }} - {{ pokemon.name }}</h2>
         <img class="h-75" :src="pokemon.image" :alt="pokemon.name" />
@@ -68,8 +68,10 @@ onMounted(() => {
     <p><strong>Pokedex:</strong> {{ pokemon.pokedexEntry }}</p>
   </div>
     <!-- <br /> -->
-    <div v-if="isLoggedIn && isOwner(pokemon.addedBy?.uniqueSub)" class="d-grid gap-2 d-md-flex justify-content-md-center">
-      <RouterLink class="btn btn-sm btn-warning" :to="`/pokemon/${pokemon._id}/edit`">Edit Pokemon</RouterLink>
+    <div v-if="isLoggedIn && isOwner(pokemon.addedBy?.uniqueSub)" class="button-div d-grid gap-2 d-flex justify-content-center">
+      <RouterLink :to="`/pokemon/${pokemon._id}/edit`">
+        <button class="btn btn-sm btn-warning">Edit Pokemon</button>
+      </RouterLink>
       <button type="button" class="btn btn-sm btn-danger" data-bs-toggle="modal" data-bs-target="#deleteModal">Delete Pokemon</button>
     </div>
   </div>
@@ -98,11 +100,18 @@ main {
 
 .pokemon-card {
   width: 60dvw;
+  padding: 4rem;
 }
 
 h2,
 p {
   color: white;
+}
+
+h2,
+p,
+button {
+  letter-spacing: 0.05em;
 }
 
 .pokemon-title-and-image {
@@ -149,6 +158,70 @@ p {
 
   100% {
     transform: translateX(-100%) rotate(var(--shine-deg));
+  }
+}
+
+@media (max-width: 1600px) {
+  .pokemon-card {
+    width: 40dvw;
+    height: 90dvh;
+    padding: 4rem;
+  }
+}
+
+@media (max-width: 1366px) {
+  .pokemon-card {
+    width: 40dvw;
+    height: 80dvh;
+    padding: 4rem;
+  }
+}
+
+@media (max-width: 1200px) {
+
+  p,
+  button {
+    font-size: 14px;
+  }
+}
+
+@media (max-width: 1024px) {
+  .pokemon-card {
+    width: 60dvw;
+    height: 60dvh;
+  }
+
+  p,
+  button {
+    font-size: 14px;
+  }
+
+}
+
+@media (max-width: 820px) {
+  .pokemon-card {
+    width: 70dvw;
+    height: 60dvh;
+  }
+
+  p,
+  button {
+    font-size: 14px;
+  }
+}
+
+
+@media (max-width: 500px) {
+  .pokemon-card {
+    width: 80dvw;
+    height: 75dvh;
+    padding: 10%;
+  }
+
+  p,
+  button {
+    font-size: 12px;
+    letter-spacing: 0.02em;
   }
 }
 </style>
